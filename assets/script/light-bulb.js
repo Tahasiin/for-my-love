@@ -46,7 +46,9 @@ const CORD_TL = timeline({
         clearInterval(typeWriter)
 
         document.getElementById('question').innerHTML = ''
+        document.getElementById('reply').innerHTML = ''
         document.getElementById('answers').style.display = 'none'
+        document.getElementById('the-reply').style.display = "none";
 
         STATE.ON = !STATE.ON;
         set(document.documentElement, { '--on': STATE.ON ? 1 : 0 });
@@ -56,7 +58,7 @@ const CORD_TL = timeline({
         AUDIO.CLICK.play();
 
         if (STATE.ON) {
-            var myText = "Shantu did you think, I forgot something ?",
+            var myText = "Shantu, did you think, I forgot something ?",
                 i = 0;
 
             typeWriter = setInterval(function () {

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🎂 Happy Birthday ❤️</title>
+    <title>Question ?</title>
     <link rel="stylesheet" href="assets/style/light-buld.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap');
@@ -16,13 +16,6 @@
 </head>
 
 <body>
-    <nav style="display: none;">
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
     <!-- partial:index.partial.html -->
     <svg class="toggle-scene" xmlns="http://www.w3.org/2000/svg" preserveaspectratio="xMinYMin"
         viewBox="0 0 197.451 481.081">
@@ -106,16 +99,24 @@
     </svg>
 
     <br>
-    <div style="bottom:20%;position: absolute;">
+
+    <div style="bottom:20%;position: absolute;" id="turn-on-light">
+        <h4 style="color: #F0D8A8;">Turn On The Light</h4>
+    </div>
+
+    <div style="bottom:20%;position: absolute;" id="the-question">
         <h4 style="color: #29363D;" id="question"></h4>
         <center style="display: none;" id="answers">
             <table style="width: 150px;text-align: center;">
                 <tr>
-                    <td><a href="" style="color: #29363D;font-weight: bolder;color:red">YES</a></td>
-                    <td><a href="" style="color: #29363D;font-weight: bolder;color:green">NO</a></td>
+                    <td><a href="javascript:reply('yes')" style="color: #29363D;font-weight: bolder;color:red">YES</a></td>
+                    <td><a href="javascript:reply('no')" style="color: #29363D;font-weight: bolder;color:green">NO</a></td>
                 </tr>
             </table>
         </center>
+    </div>
+    <div style="bottom:20%;position: absolute;display: none;" id="the-reply">
+        <h4 style="color: #29363D;" id="reply"></h4>
     </div>
     <!-- partial -->
     <script src='https://unpkg.co/gsap@3/dist/gsap.min.js'></script>
@@ -123,6 +124,41 @@
     <script src='https://unpkg.com/gsap@3/dist/Draggable.min.js'></script>
     <!-- <script src="assets/script/app.js"></script> -->
     <script src="assets/script/light-bulb.js"></script>
-</body>
 
+    <script>
+        function reply(reply) {
+            var replyText
+            var typeWriter
+
+            document.getElementById('the-question').style.display = "none";
+            document.getElementById('the-reply').style.display = "block";
+
+            if (reply == 'yes') {
+                var replyText = "Hahahaha... actually no, I did't ! 😁😁😁"
+            } else if (reply == 'no') {
+                var replyText = "Oh ! Ok then. Sleep. 😏"
+            }
+
+            x = 0;
+            typeWriter = setInterval(function () {
+                document.getElementById('reply').textContent += replyText[x];
+                x++;
+
+                if (x > replyText.length - 1) {
+                    clearInterval(typeWriter);
+                    setTimeout(() => {
+                        if (reply == 'yes') {
+                            window.location = 'cake.html'
+                        }
+
+                        if (reply == 'no') {
+                            location.reload()
+                        }
+                    }, 2000);
+                }
+
+            }, 150);
+        }
+    </script>
+</body>
 </html>
